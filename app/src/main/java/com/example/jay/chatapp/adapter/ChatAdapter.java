@@ -23,7 +23,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         this.chats = items;
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
@@ -70,9 +69,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             String to = chats.get(position).getTo();
             //String from = chats.get(position).getFrom();
             if (to != null) {
-                if (to.equals("user1")) {
+                /*if (to.equals("user1")) {
                     //check for previous
-                    if (position > 0) {
+                    if (position > 0)
+                    {
                         if (to.equals("user1") && chats.get(position - 1).getTo().equals("user1"))
                             return 3;
                         else
@@ -89,7 +89,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                             return 2;
                     } else
                         return 2;
-                }
+                }*/
+                return to.equals("user1") ?
+                        (position > 0) ? ((to.equals("user1") && chats.get(position - 1).getTo().equals("user1")) ? 3 : 1) : 1
+                        : (position > 0) ? ((to.equals("user2") && chats.get(position - 1).getTo().equals("user2")) ? 4 : 2) : 2;
             }
         }
         return 0;
